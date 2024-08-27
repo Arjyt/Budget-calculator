@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="balance-box">
+                <h2>Balance</h2>
+                <p id="balance-amount">$0.00</p>
+            </div>
+            <div class="img">
+                
+            </div>
+            <nav class="sidebar-nav">
+                <div id="img">
+
+                </div>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Add Income</a></li>
+                    <li><a href="#">Add Expense</a></li>
+                    <li><a href="#">Reports</a></li>
+                </ul>
+                <button onclick="logout()" class="btn-logout">Logout</button> <!-- Added logout button -->
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h1>Budget Calculator</h1>
+            <div class="form-and-div">
+                <div class="form-container">
+                    <form id="budget-form">
+                        <div class="input-group">
+                            <label for="description">Description</label>
+                            <input type="text" id="description" placeholder="Enter description">
+                        </div>
+                        <div class="input-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" id="amount" placeholder="Enter amount">
+                        </div>
+                        <div class="input-group">
+                            <label for="type">Type</label>
+                            <select id="type">
+                                <option value="income">Income</option>
+                                <option value="expense">Expense</option>
+                            </select>
+                        </div>
+                        <button type="button" onclick="clk()" class="btn">Add</button>
+
+                    </form>
+                </div>
+
+                <!-- New div with box shadow -->
+                <div class="box-shadow-div">
+                    <div class="chart-container">
+                        <canvas id="budgetPieChart" width="400" height="400"></canvas>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Income and Expense Sections as Tables -->
+            <div class="transaction-tables">
+                <section id="income-section" class="transaction-table">
+                    <h2>Income</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="income-list"></tbody>
+                        <tfoot>
+                            <tr style="color: black; font-weight: bold;">
+                                <td>Total</td>
+                                <td id="income-total">$0.00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </section>
+
+                <section id="expense-section" class="transaction-table">
+                    <h2>Expenses</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expense-list"></tbody>
+                        <tfoot>
+                            <tr style="color: black; font-weight: bold;">
+                                <td>Total</td>
+                                <td id="expense-total">$0.00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

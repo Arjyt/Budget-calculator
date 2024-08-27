@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff; /* White background for forms */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input {
+            width: calc(100% - 22px); /* Adjusted width to account for padding */
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #FF5722; /* Orange button */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #E64A19; /* Darker orange on hover */
+        }
+        .switch {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .switch a {
+            color: #FF5722; /* Orange color for links */
+            text-decoration: none;
+        }
+        .switch a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 id="form-title">Register</h2>
+    
+    <div id="register-form">
+        <input type="text" id="reg-username" placeholder="Username" required>
+        <input type="password" id="reg-password" placeholder="Password" required>
+        <button onclick="register()">Register</button>
+        <div class="switch">
+            Already have an account? <a href="#" onclick="showLogin()">Login here</a>
+        </div>
+    </div>
+
+    <div id="login-form" style="display: none;">
+        <input type="text" id="login-username" placeholder="Username" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <div class="switch">
+            Don't have an account? <a href="#" onclick="showRegister()">Register here</a>
+        </div>
+    </div>
+</div>
+
+<script>
+// Show login form
+function showLogin() {
+    document.getElementById('register-form').style.display = 'none';
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('form-title').textContent = 'Login';
+}
+
+// Show register form
+function showRegister() {
+    document.getElementById('register-form').style.display = 'block';
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('form-title').textContent = 'Register';
+}
+
+// Register function
+function register() {
+    const username = document.getElementById('reg-username').value;
+    const password = document.getElementById('reg-password').value;
+
+    // Store user credentials in localStorage
+    if (localStorage.getItem(username)) {
+        alert('Username already exists');
+        return;
+    }
+    localStorage.setItem(username, password);
+    alert('Registration successful! Please log in.');
+    showLogin(); // Switch to login form
+}
+
+// Login function
+function login() {
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+    
+    // Check user credentials
+    if (localStorage.getItem(username) === password) {
+        localStorage.setItem('currentUser', username);
+        window.location = './main.html'; // Redirect to the main page
+    } else {
+        alert('Invalid username or password');
+    }
+}
+
+</script>
+
+</body>
+</html>
